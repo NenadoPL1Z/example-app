@@ -1,15 +1,25 @@
 import {BuildLoaders} from "../../types/build";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from "../../types/config";
 
-function buildRules(): BuildLoaders  {
+function buildRules(options: BuildOptions): BuildLoaders  {
+
+    const {mode} = options;
+    const {IS_DEV} = mode;
 
     const sassLoader =       {
         test: /\.s[ac]ss$/i,
         use: [
-            // Creates `style` nodes from JS strings
-            "style-loader",
-            // Translates CSS into CommonJS
-            "css-loader",
-            // Compiles Sass to CSS
+            IS_DEV ? "style-loader" : MiniCssExtractPlugin.loader,
+            {
+                loader: "css-loader",
+                options: {
+                    modules: {
+                        auto: (resPath: string) => resPath.includes(".module."),
+                        localIdentName: IS_DEV ? "[path][name]__[local]-[hash:base64:3]" : "[hash:base64:8]",
+                    },
+                }
+            },
             "sass-loader",
         ],
     }

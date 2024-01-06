@@ -18,7 +18,7 @@ function buildGeneralConfig (options: BuildOptions): BuildConfiguration {
         },
         plugins: buildPlugins(options),
         module: {
-            rules: buildRules(),
+            rules: buildRules(options),
         },
         resolve: buildResolvers(),
         ...buildDevConfig(options)

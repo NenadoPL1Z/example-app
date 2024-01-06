@@ -1,37 +1,19 @@
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import webpack from 'webpack'
+import {BuildConfiguration} from "./config/build/types/build";
+import buildConfig from "./config/build";
+import {BuildMode, BuildPaths} from "./config/build/types/config";
+import getPathDirname from "./config/helpers/getPathFromDirname";
 
-type WebpackConfiguration = webpack.Configuration;
+const mode: BuildMode = "production"
 
-const pathFindFiles = (...entry: string[]) => {
-    return path.resolve(__dirname, ...entry)
+const paths: BuildPaths = {
+    entry: getPathDirname("src", "index.ts"),
+    build: getPathDirname("build"),
+    html: getPathDirname("public", "index.html")
 }
 
-const config: WebpackConfiguration = {
-    mode: "production",
-    entry: pathFindFiles("src", "index.ts"),
-    output: {
-        filename: "[name].[contenthash].js",
-        path: pathFindFiles("build"),
-        clean: true
-    },
-    plugins: [
-        new HtmlWebpackPlugin({ template: pathFindFiles("public", "index.html") }),
-        new webpack.ProgressPlugin(),
-    ],
-    module: {
-        rules: [
-          {
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/,
-          },
-        ],
-      },
-    resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    },
-}
+const config: BuildConfiguration = buildConfig({
+    mode,
+    paths,
+})
 
 export default config

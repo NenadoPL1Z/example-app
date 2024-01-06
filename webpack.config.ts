@@ -19,7 +19,7 @@ export default (env: BuildEnv) => {
         IS_DEV,
     }
     const paths: BuildPaths = {
-        entry: getPathDirname("src", "index.ts"),
+        entry: getPathDirname("src", "index.tsx"),
         build: getPathDirname("build"),
         html: getPathDirname("public", "index.html")
     }

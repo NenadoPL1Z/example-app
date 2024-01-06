@@ -2,7 +2,6 @@ import {BuildConfiguration} from "./config/build/types/build";
 import buildConfig from "./config/build";
 import {BuildMode, BuildPaths} from "./config/build/types/config";
 import getPathDirname from "./config/helpers/getPathFromDirname";
-import * as process from "process";
 
 const mode: BuildMode = (process.env.NODE_ENV as BuildMode) || "none";
 

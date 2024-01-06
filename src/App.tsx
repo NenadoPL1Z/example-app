@@ -7,7 +7,7 @@ import {PageNamespace} from "./pages/types/PageNamespace";
 
 const App = () => {
     return (
-        <div className="app">
+        <div id="app">
             <Link to={PageNamespace.MAIN}>Главная</Link>
             <Link to={PageNamespace.ABOUT}>О сайте</Link>
             <Suspense fallback={<div>Loading...</div>}>

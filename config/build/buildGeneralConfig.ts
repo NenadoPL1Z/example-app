@@ -1,11 +1,11 @@
 import {BuildOptions} from "./types/config";
 import {BuildConfiguration} from "./types/build";
-import buildPlugins from "./buildPlugins";
-import buildRules from "./buildRules";
-import buildResolvers from "./buildResolvers";
-import buildDevServer from "./buildDevServer";
+import buildPlugins from "./buildParams/general/buildPlugins";
+import buildRules from "./buildParams/general/buildRules";
+import buildResolvers from "./buildParams/general/buildResolvers";
+import buildDevConfig from "./buildDevConfig";
 
-function buildConfig (options: BuildOptions): BuildConfiguration {
+function buildGeneralConfig (options: BuildOptions): BuildConfiguration {
     const {mode, paths} = options;
 
     return {
@@ -21,9 +21,8 @@ function buildConfig (options: BuildOptions): BuildConfiguration {
             rules: buildRules(),
         },
         resolve: buildResolvers(),
-        devtool: mode.IS_DEV ? 'inline-source-map' : undefined,
-        devServer: mode.IS_DEV ? buildDevServer(options) : undefined,
+        ...buildDevConfig(options)
     }
 }
 
-export default buildConfig;
+export default buildGeneralConfig;

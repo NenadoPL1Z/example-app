@@ -1,4 +1,4 @@
-import {BuildResolve} from "./types/build";
+import {BuildResolve} from "../../types/build";
 
 const buildResolvers = (): BuildResolve => {
     return {

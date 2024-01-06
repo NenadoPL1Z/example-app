@@ -1,4 +1,4 @@
-import {BuildLoaders} from "./types/build";
+import {BuildLoaders} from "../../types/build";
 
 function buildRules(): BuildLoaders  {
 

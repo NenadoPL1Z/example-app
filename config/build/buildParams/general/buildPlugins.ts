@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
-import {BuildPlugins} from "./types/build";
-import {BuildOptions} from "./types/config";
+import {BuildOptions} from "../../types/config";
+import {BuildPlugins} from "../../types/build";
 
 function buildPlugins(options: BuildOptions): BuildPlugins {
     const {paths} = options;

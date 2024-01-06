@@ -1,4 +1,4 @@
-import buildConfig from "./config/build";
+import buildGeneralConfig from "./config/build/buildGeneralConfig";
 import {BuildEnv, BuildMode, BuildModeName, BuildPaths} from "./config/build/types/config";
 import getPathDirname from "./config/helpers/getPathFromDirname";
 
@@ -24,7 +24,7 @@ export default (env: BuildEnv) => {
         html: getPathDirname("public", "index.html")
     }
 
-    return buildConfig({
+    return buildGeneralConfig({
         mode,
         port,
         paths,

@@ -6,12 +6,13 @@ import {PageNamespace} from "./pages/types/PageNamespace";
 
 import "./styles/index.scss"
 import {useTheme} from "./styles/themes/context/ThemeContext";
+import classNames from "./helpers/classNames/classNames";
 
 const App = () => {
     const {theme, toggleTheme} = useTheme();
 
     return (
-        <div className={`app ${theme}`}>
+        <div className={classNames("app", {}, [theme])}>
             <button onClick={toggleTheme}>TOGGLE THEME</button>
             <Link to={PageNamespace.MAIN}>Главная</Link>
             <Link to={PageNamespace.ABOUT}>О сайте</Link>
